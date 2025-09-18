@@ -354,27 +354,24 @@ const termsCheckbox = document.getElementById('termsAgreement');
 const submitBtn = document.getElementById('submitBtn');
 
 // Open modal when pricing button is clicked
-document.querySelectorAll('.pricing-btn').forEach(btn => {
+document.querySelectorAll('[data-plan]').forEach(btn => {
     btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        const plan = this.getAttribute('data-plan');
-        selectedPlanInput.value = plan;
-        
-        // Update modal title based on plan
-        const modalTitle = document.querySelector('.modal-title');
-        const planNames = {
-            'starter': 'Стартер',
-            'pro': 'Профи', 
-            'agency': 'Агентство'
-        };
-        modalTitle.textContent = `Подключение тарифа "${planNames[plan]}"`;
-        
-        modal.classList.add('show');
-        document.body.style.overflow = 'hidden';
+        if (this.classList.contains('pricing-btn')) {
+            e.preventDefault();
+            const plan = this.getAttribute('data-plan');
+            selectedPlanInput.value = plan;
+            
+            // Update modal title with tariff name from card
+            const modalTitle = document.querySelector('.modal-title');
+            const cardTitle = this.closest('.pricing-card').querySelector('h3').textContent;
+            modalTitle.textContent = `Подключение тарифа "${cardTitle}"`;
+            
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
 
-        // Инициализируем состояние кнопки отправки на основании чекбоксов
-        if (privacyCheckbox && termsCheckbox && submitBtn) {
-            updateSubmitState();
+            if (privacyCheckbox && termsCheckbox && submitBtn) {
+                updateSubmitState();
+            }
         }
     });
 });
