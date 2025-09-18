@@ -6,8 +6,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', function() {
+            // Toggle menu visibility
             navLinks.classList.toggle('nav-links-open');
             mobileMenuBtn.classList.toggle('mobile-menu-open');
+            
+            // Toggle body scroll
+            document.body.style.overflow = navLinks.classList.contains('nav-links-open') 
+                ? 'hidden' 
+                : '';
+        });
+
+        // Close menu when clicking on links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-links-open');
+                mobileMenuBtn.classList.remove('mobile-menu-open');
+                document.body.style.overflow = '';
+            });
         });
     }
 
