@@ -863,6 +863,45 @@ body {
     align-self: flex-end;
 }
 
+/* Pricing Note */
+.pricing-note {
+    margin-top: 40px;
+    padding: 24px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+}
+
+.pricing-note-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.pricing-note-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.pricing-note-text {
+    flex: 1;
+}
+
+.pricing-note-text p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #374151;
+}
+
+.pricing-note-text strong {
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
 /* CTA Section */
 .cta {
     padding: 80px 0;
