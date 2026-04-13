@@ -206,6 +206,15 @@ body {
     font-weight: 500;
 }
 
+.hero-lead {
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 16px;
+    line-height: 1.45;
+    max-width: 36rem;
+}
+
 .hero-title {
     font-size: 3.5rem;
     font-weight: 800;
