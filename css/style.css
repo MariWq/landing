@@ -256,39 +256,13 @@ body {
     font-weight: 600;
 }
 
-.hero-stats {
-    display: flex;
-    gap: 32px;
-    margin-bottom: 40px;
-    margin-top: 0.5rem;
-    justify-content: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.stat {
-    text-align: left;
-    max-width: 11rem;
-}
-
-.stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #667eea;
-}
-
-.stat-text {
-    font-size: 14px;
-    color: #6b7280;
-}
-
 .hero-cta {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
     width: 100%;
+    margin-top: 1.75rem;
 }
 
 .hero-note {
@@ -1155,10 +1129,6 @@ body {
         font-size: 2.5rem;
     }
     
-    .hero-stats {
-        justify-content: flex-start;
-    }
-    
     .solution-content {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -1223,16 +1193,6 @@ body {
     
     .hero-title {
         font-size: 2rem;
-    }
-    
-    .hero-stats {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-    }
-    
-    .stat {
-        max-width: 100%;
     }
     
     .problems-grid {
