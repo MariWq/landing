@@ -195,18 +195,19 @@ body {
 .hero-text {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .hero-copy {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
     width: 100%;
     max-width: 38rem;
-    margin: 0 auto;
+    margin: 0;
+    text-align: left;
 }
 
 .hero-badge {
@@ -260,13 +261,14 @@ body {
     gap: 32px;
     margin-bottom: 40px;
     margin-top: 0.5rem;
-    justify-content: center;
+    justify-content: flex-start;
     width: 100%;
     flex-wrap: wrap;
 }
 
 .stat {
-    text-align: center;
+    text-align: left;
+    max-width: 11rem;
 }
 
 .stat-number {
@@ -284,7 +286,7 @@ body {
 .hero-cta {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 16px;
     width: 100%;
 }
@@ -298,8 +300,8 @@ body {
   .hero-cta {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
   }
   
   .hero-cta .btn {
@@ -1146,7 +1148,7 @@ body {
     .hero-content {
         grid-template-columns: 1fr;
         gap: 40px;
-        text-align: center;
+        text-align: left;
     }
     
     .hero-title {
@@ -1154,7 +1156,7 @@ body {
     }
     
     .hero-stats {
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .solution-content {
@@ -1226,6 +1228,11 @@ body {
     .hero-stats {
         flex-direction: column;
         gap: 16px;
+        align-items: flex-start;
+    }
+    
+    .stat {
+        max-width: 100%;
     }
     
     .problems-grid {
