@@ -153,8 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.innerHTML = '<span class="loading-spinner"></span> Отправляем...';
             submitBtn.disabled = true;
             
-            // Send to Telegram bot
-            sendToTelegram(phone)
+            submitDemoLead(phone)
                 .then(() => {
                     alert('Спасибо! Мы перезвоним вам в течение 15 минут.');
                     phoneInput.value = '';
@@ -165,8 +164,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Callback request submitted:', phone);
                 })
                 .catch((error) => {
-                    console.error('Error sending to Telegram:', error);
-                    alert('Произошла ошибка. Попробуйте еще раз или позвоните нам напрямую.');
+                    console.error('Error sending lead:', error);
+                    const msg = !isWeb3FormsConfigured()
+                        ? 'Форма не настроена: укажите web3formsAccessKey в js/lead-config.js (ключ на web3forms.com).'
+                        : 'Произошла ошибка. Попробуйте еще раз или позвоните нам напрямую.';
+                    alert(msg);
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
                 });
@@ -221,8 +223,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form handling (other forms)
-    document.querySelectorAll('form:not(#callbackForm)').forEach(form => {
+    // Form handling (other forms — без демо и модалки тарифов)
+    document.querySelectorAll('form:not(#callbackForm):not(#pricingForm)').forEach(form => {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             console.log('Form submitted');
@@ -307,55 +309,56 @@ window.addEventListener('scroll', debounce(revealOnScroll, 10));
 // Initialize reveal on load
 revealOnScroll();
 
-// Telegram Bot Integration
-async function sendToTelegram(phone) {
-    const botToken = '8432776737:AAEFGMCviRfKTt2Di6IDdINsiFhzQkxH-Io';
-    // Используем правильный chat_id
-    const chatId = '-1003062794351';
-    
-    // Получаем дополнительную информацию
-    const currentTime = new Date().toLocaleString('ru-RU');
-    const userAgent = navigator.userAgent;
-    const referrer = document.referrer || 'Прямой переход';
-    const currentUrl = window.location.href;
-    
-    const message = `🎯 ЗАПРОС НА ДЕМО С ЛЕНДИНГА!
+// Заявки → Web3Forms → письмо на ваш email (https://web3forms.com)
+const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
-📞 Телефон: ${phone}
-⏰ Время: ${currentTime}
-🌐 Страница: ${currentUrl}
-📱 Устройство: ${userAgent.includes('Mobile') ? 'Мобильное' : 'Десктоп'}
-🔗 Источник: ${referrer}
+function isWeb3FormsConfigured() {
+    const c = window.CONTENTPULSE_LEAD;
+    const key = c && c.web3formsAccessKey;
+    return Boolean(key && key !== 'YOUR_WEB3FORMS_ACCESS_KEY');
+}
 
-#демо #лендинг #contentfactory`;
-
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'HTML'
-            })
-        });
-
-        if (response.ok) {
-            console.log(`Message sent successfully to chat_id: ${chatId}`);
-            return response.json();
-        } else {
-            const errorData = await response.json();
-            console.error(`Failed to send message:`, errorData);
-            throw new Error(`Telegram API error: ${errorData.description}`);
-        }
-    } catch (error) {
-        console.error(`Error sending to Telegram:`, error);
-        throw error;
+async function submitToWeb3Forms(fields) {
+    if (!isWeb3FormsConfigured()) {
+        throw new Error('Web3Forms not configured');
     }
+    const response = await fetch(WEB3FORMS_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+        },
+        body: JSON.stringify({
+            access_key: window.CONTENTPULSE_LEAD.web3formsAccessKey,
+            botcheck: '',
+            ...fields,
+        }),
+    });
+
+    const data = await response.json().catch(() => ({}));
+    if (response.ok && data.success) {
+        return data;
+    }
+    throw new Error(data.message || data.error || response.statusText || 'Submit failed');
+}
+
+async function submitDemoLead(phone) {
+    const time = new Date().toLocaleString('ru-RU');
+    const page = window.location.href;
+    const ref = document.referrer || 'Прямой переход';
+    const device = /Mobile/i.test(navigator.userAgent) ? 'Мобильное' : 'Десктоп';
+
+    return submitToWeb3Forms({
+        subject: 'Content Pulse — запрос демо с лендинга',
+        name: 'Демо (лендинг)',
+        phone,
+        message:
+            `Телефон: ${phone}\n\n` +
+            `Время: ${time}\n` +
+            `Страница: ${page}\n` +
+            `Устройство: ${device}\n` +
+            `Источник: ${ref}`,
+    });
 }
 
 // Modal functionality
@@ -563,8 +566,33 @@ if (pricingForm) {
             submitBtn.disabled = true;
         }
         
-        // Send to Telegram
-        sendPricingToTelegram(data)
+        const planNames = {
+            start: 'Старт (0 ₽/мес)',
+            micro: 'Микро (990 ₽/мес)',
+            blogger: 'Блогер (2 490 ₽/мес)',
+            team: 'Команда (4 990 ₽/мес)',
+            agency: 'Агентство (14 990 ₽/мес)',
+            enterprise: 'Корпорация / API (от 30 000 ₽/мес)',
+        };
+        const planLabel =
+            planNames[data.plan] ||
+            (data.plan ? String(data.plan) : 'тариф не указан');
+
+        submitToWeb3Forms({
+            subject: `Content Pulse — заявка: ${planLabel}`,
+            name: data.name,
+            email: data.email,
+            phone: data.phone,
+            message:
+                `Тариф: ${planLabel}\n\n` +
+                `Имя: ${data.name}\n` +
+                `Email: ${data.email}\n` +
+                `Телефон: ${data.phone}\n` +
+                `Компания: ${data.company}\n\n` +
+                `Комментарий:\n${data.message}\n\n` +
+                `Время: ${new Date().toLocaleString('ru-RU')}\n` +
+                `Страница: ${window.location.href}`,
+        })
             .then(() => {
                 alert('Спасибо! Мы свяжемся с вами в ближайшее время для подключения тарифа.');
                 closeModal();
@@ -575,7 +603,10 @@ if (pricingForm) {
             })
             .catch((error) => {
                 console.error('Error sending pricing request:', error);
-                alert('Произошла ошибка. Попробуйте еще раз или свяжитесь с нами напрямую.');
+                const msg = !isWeb3FormsConfigured()
+                    ? 'Форма не настроена: укажите web3formsAccessKey в js/lead-config.js (ключ на web3forms.com).'
+                    : 'Произошла ошибка. Попробуйте еще раз или свяжитесь с нами напрямую.';
+                alert(msg);
                 if (submitBtn) {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
@@ -584,59 +615,3 @@ if (pricingForm) {
     });
 }
 
-// Send pricing data to Telegram
-async function sendPricingToTelegram(data) {
-    const botToken = '8432776737:AAEFGMCviRfKTt2Di6IDdINsiFhzQkxH-Io';
-    const chatId = '-1003062794351';
-    
-    const currentTime = new Date().toLocaleString('ru-RU');
-    const currentUrl = window.location.href;
-    
-    const planNames = {
-        'starter': 'Стартер ($0/месяц)',
-        'pro': 'Профи ($19/месяц)', 
-        'agency': 'Агентство ($49/месяц)'
-    };
-    
-    const message = `💼 ПОДКЛЮЧЕНИЕ ТАРИФОВ!
-
-👤 Имя: ${data.name}
-📧 Email: ${data.email}
-📞 Телефон: ${data.phone}
-🏢 Компания: ${data.company}
-📋 Тариф: ${planNames[data.plan]}
-💬 Комментарий: ${data.message}
-
-⏰ Время: ${currentTime}
-🌐 Страница: ${currentUrl}
-
-#подключение_тарифов #лендинг #contentfactory`;
-
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                chat_id: chatId,
-                text: message,
-                parse_mode: 'HTML'
-            })
-        });
-
-        if (response.ok) {
-            console.log(`Pricing request sent successfully`);
-            return response.json();
-        } else {
-            const errorData = await response.json();
-            console.error(`Failed to send pricing request:`, errorData);
-            throw new Error(`Telegram API error: ${errorData.description}`);
-        }
-    } catch (error) {
-        console.error(`Error sending pricing request to Telegram:`, error);
-        throw error;
-    }
-}
