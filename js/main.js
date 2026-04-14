@@ -3,6 +3,20 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded');
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinks = document.querySelector('.nav-links');
+
+    function trackEvent(eventName, params = {}) {
+        // Унифицированный трекинг: dataLayer/gtag/Я.Метрика (если подключены)
+        if (Array.isArray(window.dataLayer)) {
+            window.dataLayer.push({ event: eventName, ...params });
+        }
+        if (typeof window.gtag === 'function') {
+            window.gtag('event', eventName, params);
+        }
+        if (typeof window.ym === 'function' && window.CONTENTPULSE_METRIKA_ID) {
+            window.ym(window.CONTENTPULSE_METRIKA_ID, 'reachGoal', eventName, params);
+        }
+        console.log('Tracked event:', eventName, params);
+    }
     
     if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener('click', function() {
@@ -125,6 +139,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Callback form handling
     const callbackForm = document.getElementById('callbackForm');
     const phoneInput = document.getElementById('phoneInput');
+    const heroMainCta = document.querySelector('.hero-main-cta');
+
+    if (heroMainCta) {
+        heroMainCta.addEventListener('click', () => {
+            trackEvent('click_start_demo', { placement: 'hero' });
+        });
+    }
     
     console.log('Callback form found:', callbackForm);
     console.log('Phone input found:', phoneInput);
@@ -155,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             submitDemoLead(phone)
                 .then(() => {
+                    trackEvent('lead_submit_success', { type: 'callback_phone' });
                     alert('Спасибо! Мы перезвоним вам в течение 15 минут.');
                     phoneInput.value = '';
                     submitBtn.innerHTML = originalText;
@@ -182,6 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (callbackButton) {
         console.log('Adding click handler to callback button');
         callbackButton.addEventListener('click', function(e) {
+            trackEvent('open_registration_form', { type: 'callback_phone' });
             console.log('Callback button clicked');
             // The form submit handler should handle this, but this is a backup
         });
@@ -395,6 +418,7 @@ document.querySelectorAll('[data-plan]').forEach(btn => {
             e.preventDefault();
             const plan = this.getAttribute('data-plan');
             selectedPlanInput.value = plan;
+            trackEvent('open_registration_form', { type: 'pricing_modal', plan });
             
             // Update modal title with tariff name from card
             const modalTitle = document.querySelector('.modal-title');
@@ -611,6 +635,7 @@ if (pricingForm) {
                 `Страница: ${window.location.href}`,
         })
             .then(() => {
+                trackEvent('lead_submit_success', { type: 'pricing_modal', plan: data.plan || 'unknown' });
                 alert('Спасибо! Мы свяжемся с вами в ближайшее время для подключения тарифа.');
                 closeModal();
                 if (submitBtn) {

@@ -234,7 +234,7 @@ body {
 }
 
 .hero-lead {
-    font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+    font-size: clamp(1.0625rem, 2vw, 1.2rem);
     font-weight: 600;
     color: #1f2937;
     margin: 0;
@@ -242,18 +242,19 @@ body {
     max-width: 34rem;
 }
 
-.hero-description {
-    font-size: 1rem;
-    font-weight: 400;
-    color: #4b5563;
+.hero-benefits {
     margin: 0;
-    line-height: 1.65;
+    padding-left: 1.15rem;
+    display: grid;
+    gap: 0.6rem;
+    color: #4b5563;
+    font-size: 1rem;
+    line-height: 1.55;
     max-width: 36rem;
 }
 
-.hero-description-accent {
-    color: #374151;
-    font-weight: 600;
+.hero-benefits li::marker {
+    color: #667eea;
 }
 
 .hero-cta {
@@ -268,6 +269,78 @@ body {
 .hero-note {
     font-size: 14px;
     color: #9ca3af;
+}
+
+.hero-steps {
+    background: #eef2ff;
+    border: 1px solid #dbe2ff;
+    border-radius: 14px;
+    padding: 16px 18px;
+    width: min(100%, 36rem);
+}
+
+.hero-steps-wide {
+    width: 100%;
+    max-width: none;
+    margin-top: 20px;
+}
+
+.hero-steps-title {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #2f3a74;
+}
+
+.hero-steps-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 8px;
+    align-items: start;
+}
+
+.hero-steps-track::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: linear-gradient(90deg, #818cf8 0%, #c4b5fd 100%);
+    z-index: 0;
+}
+
+.hero-step-item {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 9px;
+    background: #eef2ff;
+}
+
+.hero-step-num {
+    width: 27px;
+    height: 27px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.25);
+}
+
+.hero-step-text {
+    color: #374151;
+    font-size: 0.8rem;
+    line-height: 1.25;
+    max-width: 7rem;
 }
 
 @media (max-width: 768px) {
@@ -286,6 +359,48 @@ body {
   .hero-note {
     margin-top: 15px;
     width: 100%;
+  }
+
+  .hero-benefits {
+    font-size: 0.97rem;
+  }
+
+  .hero-steps {
+    width: 100%;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-steps-title {
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-steps-track {
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 14px;
+    width: 100%;
+  }
+
+  .hero-steps-track::before {
+    display: none;
+  }
+
+  .hero-step-item {
+    align-items: center;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #dbe2ff;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .hero-step-text {
+    max-width: 100%;
+    font-size: 0.86rem;
   }
 }
 
@@ -342,6 +457,39 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+/* Who For */
+.who-for {
+    padding: 48px 0 24px;
+    background: #f8fafc;
+}
+
+.who-for-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.who-for-item {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px;
+}
+
+.who-for-item h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    color: #111827;
+}
+
+.who-for-item p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.5;
+    font-size: 0.96rem;
 }
 
 .calendar-widget, .ai-widget {
@@ -679,6 +827,11 @@ body {
 .social-proof {
     padding: 80px 0;
     background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+/* Временно скрыто до появления подтвержденных кейсов */
+.social-proof {
+    display: none;
 }
 
 .social-proof-content {
@@ -1099,6 +1252,10 @@ body {
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+    .who-for-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .problems-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 24px;
@@ -1123,6 +1280,10 @@ body {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: left;
+    }
+
+    .who-for-grid {
+        grid-template-columns: 1fr;
     }
     
     .hero-title {
@@ -1193,6 +1354,12 @@ body {
     
     .hero-title {
         font-size: 2rem;
+    }
+
+    .hero-steps-track {
+        grid-template-columns: 1fr;
+        max-width: 340px;
+        margin: 0 auto;
     }
     
     .problems-grid {
