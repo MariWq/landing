@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch((error) => {
                     console.error('Error sending lead:', error);
                     const msg = !isWeb3FormsConfigured()
-                        ? 'Форма не настроена: укажите web3formsAccessKey в js/lead-config.js (ключ на web3forms.com).'
+                        ? 'Форма не настроена: укажите web3formsProxyUrl (рекомендуется) или web3formsAccessKey в js/lead-config.js.'
                         : 'Произошла ошибка. Попробуйте еще раз или позвоните нам напрямую.';
                     alert(msg);
                     submitBtn.innerHTML = originalText;
@@ -309,12 +309,21 @@ window.addEventListener('scroll', debounce(revealOnScroll, 10));
 // Initialize reveal on load
 revealOnScroll();
 
-// Заявки → Web3Forms → письмо на ваш email (https://web3forms.com)
+// Заявки → Web3Forms (напрямую или через прокси-Worker)
 const WEB3FORMS_URL = 'https://api.web3forms.com/submit';
 
+function getWeb3FormsProxyUrl() {
+    const c = window.CONTENTPULSE_LEAD || {};
+    const url = String(c.web3formsProxyUrl || '').trim();
+    if (!url) return '';
+    if (!/^https?:\/\//i.test(url)) return '';
+    return url;
+}
+
 function isWeb3FormsConfigured() {
-    const c = window.CONTENTPULSE_LEAD;
-    const key = c && c.web3formsAccessKey;
+    const c = window.CONTENTPULSE_LEAD || {};
+    if (getWeb3FormsProxyUrl()) return true;
+    const key = String(c.web3formsAccessKey || '').trim();
     return Boolean(key && key !== 'YOUR_WEB3FORMS_ACCESS_KEY');
 }
 
@@ -322,17 +331,25 @@ async function submitToWeb3Forms(fields) {
     if (!isWeb3FormsConfigured()) {
         throw new Error('Web3Forms not configured');
     }
-    const response = await fetch(WEB3FORMS_URL, {
+    const c = window.CONTENTPULSE_LEAD || {};
+    const proxyUrl = getWeb3FormsProxyUrl();
+    const useProxy = Boolean(proxyUrl);
+
+    const response = await fetch(useProxy ? proxyUrl : WEB3FORMS_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
         },
-        body: JSON.stringify({
-            access_key: window.CONTENTPULSE_LEAD.web3formsAccessKey,
-            botcheck: '',
-            ...fields,
-        }),
+        body: JSON.stringify(
+            useProxy
+                ? fields
+                : {
+                      access_key: c.web3formsAccessKey,
+                      botcheck: '',
+                      ...fields,
+                  }
+        ),
     });
 
     const data = await response.json().catch(() => ({}));
@@ -604,7 +621,7 @@ if (pricingForm) {
             .catch((error) => {
                 console.error('Error sending pricing request:', error);
                 const msg = !isWeb3FormsConfigured()
-                    ? 'Форма не настроена: укажите web3formsAccessKey в js/lead-config.js (ключ на web3forms.com).'
+                    ? 'Форма не настроена: укажите web3formsProxyUrl (рекомендуется) или web3formsAccessKey в js/lead-config.js.'
                     : 'Произошла ошибка. Попробуйте еще раз или свяжитесь с нами напрямую.';
                 alert(msg);
                 if (submitBtn) {
