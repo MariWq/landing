@@ -141,6 +141,34 @@ document.addEventListener('DOMContentLoaded', function() {
     const phoneInput = document.getElementById('phoneInput');
     const heroMainCta = document.querySelector('.hero-main-cta');
 
+    function normalizeRuPhoneDigits(value) {
+        let digits = String(value || '').replace(/\D/g, '');
+        if (!digits) return '';
+        if (digits[0] === '8') digits = '7' + digits.slice(1);
+        if (digits[0] === '9') digits = '7' + digits;
+        if (digits[0] !== '7') digits = '7' + digits.slice(0, 10);
+        return digits.slice(0, 11);
+    }
+
+    function formatRuPhone(value) {
+        const digits = normalizeRuPhoneDigits(value);
+        if (!digits) return '';
+        let formatted = '+7';
+        if (digits.length > 1) {
+            formatted += ' (' + digits.slice(1, 4);
+            if (digits.length > 4) {
+                formatted += ') ' + digits.slice(4, 7);
+                if (digits.length > 7) {
+                    formatted += '-' + digits.slice(7, 9);
+                    if (digits.length > 9) {
+                        formatted += '-' + digits.slice(9, 11);
+                    }
+                }
+            }
+        }
+        return formatted;
+    }
+
     if (heroMainCta) {
         heroMainCta.addEventListener('click', () => {
             trackEvent('click_start_demo', { placement: 'hero' });
@@ -155,15 +183,17 @@ document.addEventListener('DOMContentLoaded', function() {
         callbackForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const phone = phoneInput.value.trim();
+            const normalizedDigits = normalizeRuPhoneDigits(phoneInput.value);
+            const phone = formatRuPhone(normalizedDigits);
+            phoneInput.value = phone;
+
             if (!phone) {
                 alert('Пожалуйста, введите номер телефона');
                 return;
             }
             
-            // Validate phone number
-            const phoneRegex = /^[\+]?[7-8]?[\s\-]?\(?[0-9]{3}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
-            if (!phoneRegex.test(phone)) {
+            // Validate strict RU format
+            if (normalizedDigits.length !== 11 || !normalizedDigits.startsWith('7')) {
                 alert('Пожалуйста, введите корректный номер телефона');
                 return;
             }
@@ -187,9 +217,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch((error) => {
                     console.error('Error sending lead:', error);
+                    const networkIssue = /Failed to fetch|NetworkError|Load failed|502|403/i.test(String(error && error.message));
                     const msg = !isWeb3FormsConfigured()
                         ? 'Форма не настроена: укажите web3formsProxyUrl (рекомендуется) или web3formsAccessKey в js/lead-config.js.'
-                        : 'Произошла ошибка. Попробуйте еще раз или позвоните нам напрямую.';
+                        : (networkIssue
+                            ? 'Ошибка сети при отправке. Обычно помогает web3formsProxyUrl через Worker (без VPN у клиента).'
+                            : 'Произошла ошибка. Попробуйте еще раз или позвоните нам напрямую.');
                     alert(msg);
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
@@ -215,34 +248,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Phone input formatting
     if (phoneInput) {
         phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            
-            // Если пользователь начинает вводить с 9, автоматически добавляем 7
-            if (value.length > 0 && value[0] === '9') {
-                value = '7' + value;
-            }
-            
-            // Если пользователь вводит 8, заменяем на 7
-            if (value.length > 0 && value[0] === '8') {
-                value = '7' + value.slice(1);
-            }
-            
-            if (value.length <= 11) {
-                let formatted = '+7';
-                if (value.length > 1) {
-                    formatted += ' (' + value.slice(1, 4);
-                    if (value.length > 4) {
-                        formatted += ') ' + value.slice(4, 7);
-                        if (value.length > 7) {
-                            formatted += '-' + value.slice(7, 9);
-                            if (value.length > 9) {
-                                formatted += '-' + value.slice(9, 11);
-                            }
-                        }
-                    }
-                }
-                e.target.value = formatted;
-            }
+            e.target.value = formatRuPhone(e.target.value);
+        });
+
+        phoneInput.addEventListener('blur', function(e) {
+            e.target.value = formatRuPhone(e.target.value);
         });
     }
 
