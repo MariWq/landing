@@ -1,26 +1,34 @@
-// Pricing Modal functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const modal = document.getElementById('pricingModal');
-    const modalTitle = document.querySelector('.modal-title');
-    const selectedPlanInput = document.getElementById('selectedPlan');
-    
-    // Handle pricing button clicks
-    document.querySelectorAll('.pricing-btn').forEach(btn => {
-        btn.addEventListener('click', function(e) {
+// Pricing — redirect to app instead of modal form
+document.addEventListener('DOMContentLoaded', function () {
+    var APP_URL = 'https://app.contentpulse.media/login';
+
+    document.querySelectorAll('.pricing-btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            // Get tariff name from card title
-            const card = this.closest('.pricing-card');
-            const planName = card.querySelector('h3').textContent;
-            const planType = this.getAttribute('data-plan');
-            
-            // Update modal
-            modalTitle.textContent = `Подключение тарифа "${planName}"`;
-            selectedPlanInput.value = planType;
-            
-            // Show modal
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
+            var planType = this.getAttribute('data-plan');
+
+            if (planType === 'enterprise') {
+                // Enterprise — scroll to callback form
+                var demo = document.getElementById('demo');
+                if (demo) demo.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                window.location.href = APP_URL;
+            }
         });
     });
+
+    // Pricing toggle (main / extra plans)
+    var toggleBtn = document.getElementById('pricingToggle');
+    var extraGrid = document.getElementById('pricingExtraGrid');
+
+    if (toggleBtn && extraGrid) {
+        toggleBtn.addEventListener('click', function () {
+            var isHidden = extraGrid.style.display === 'none' || extraGrid.style.display === '';
+            extraGrid.style.display = isHidden ? 'grid' : 'none';
+            var label = this.querySelector('.toggle-label');
+            var chevron = this.querySelector('.toggle-chevron');
+            if (label) label.textContent = isHidden ? 'Скрыть' : 'Смотреть все тарифы';
+            if (chevron) chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+    }
 });

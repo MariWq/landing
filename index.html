@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Content Pulse — автоматизируйте контент | 7 дней бесплатно</title>
-    <meta name="description" content="Заполните профиль компании — ИИ предложит темы и график постинга. Доска маркетолога: посты, план и понятно, какие рубрики дают заявки и охваты. Попробуйте 7 дней бесплатно.">
+    <title>Content Pulse — ИИ-маркетолог для вашего бизнеса | Бесплатный тариф навсегда</title>
+    <meta name="description" content="Content Pulse изучает ваш бизнес и пишет посты как лучший SMM-специалист — не шаблоны, а живой контент в вашем стиле. Автопостинг в Instagram и Telegram. Тариф Старт — 0 ₽ навсегда, без карты.">
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/wow.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mobile.css" media="(max-width: 768px)">
 </head>
 <body>
+
+    <!-- Urgency Top Bar -->
+    <div class="urgency-bar">
+        <div class="container">
+            <span class="urgency-text">Тариф Старт — <strong>0 ₽ навсегда</strong> &middot; платные планы: <strong>-20% при оплате за год</strong></span>
+            <a href="#pricing" class="urgency-cta">Воспользоваться &rarr;</a>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -24,9 +34,9 @@
                 </div>
                 <div class="nav-links">
                     <a href="#features" class="nav-link">Возможности</a>
+                    <a href="#comparison" class="nav-link">Vs конкуренты</a>
                     <a href="#pricing" class="nav-link">Тарифы</a>
-                    <a href="#plan-standard" class="nav-link">Демо</a>
-                    <a href="#pricing" class="btn btn-primary">7 дней бесплатно</a>
+                    <a href="#pricing" class="btn btn-primary">Начать бесплатно</a>
                 </div>
                 <div class="nav-mobile">
                     <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -39,40 +49,67 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- HERO — Dark, Wow, New USP -->
+    <section class="hero hero-dark">
+        <!-- Animated orbs background -->
+        <div class="hero-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="hero-grid-overlay"></div>
+        </div>
+
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <div class="hero-copy">
-                        <div class="hero-badge">
-                            <span class="badge-text">✨ 7 дней бесплатно · без карты</span>
-                        </div>
-                        <h1 class="hero-title">
-                            Контент-план и автопостинг за 2 минуты с <span class="gradient-text">Content Pulse</span>
-                        </h1>
-                        <p class="hero-lead">
-                            Для блогеров, малого бизнеса и агентств: ИИ сам предложит темы, график и рубрики, которые приводят заявки.
-                        </p>
-                        <ul class="hero-benefits">
-                            <li>Экономия до 95% времени на контенте</li>
-                            <li>Автопостинг в Instagram и Telegram из одного окна</li>
-                            <li>Прозрачная аналитика: что дает охваты и заявки</li>
-                            <li>Старт без команды и без сложных настроек</li>
-                        </ul>
+                    <!-- Live badge -->
+                    <div class="hero-live-badge">
+                        <span class="live-pulse"></span>
+                        <span>1&thinsp;247 маркетологов онлайн прямо сейчас</span>
                     </div>
+
+                    <!-- Main headline -->
+                    <h1 class="hero-title">
+                        ИИ-маркетолог<br>
+                        для <span class="hero-typing-wrap"><span id="heroTypingWord">блогеров</span></span>,<br>
+                        <span class="gradient-text-wow">который знает ваш бизнес</span>
+                    </h1>
+
+                    <p class="hero-lead">
+                        Content Pulse изучает ваш бренд и пишет посты в вашем стиле.<br>
+                        Buffer и SMMPlanner просто публикуют по расписанию.
+                        <strong>Мы ещё и думаем за вас.</strong>
+                    </p>
+
+                    <!-- Differentiator pills -->
+                    <div class="hero-differentiator">
+                        <div class="diff-item"><span class="diff-icon">🧠</span> Знает вашу нишу</div>
+                        <div class="diff-item"><span class="diff-icon">✍️</span> Пишет в вашем стиле</div>
+                        <div class="diff-item"><span class="diff-icon">📈</span> Показывает что даёт заявки</div>
+                        <div class="diff-item"><span class="diff-icon">🚀</span> Публикует сам</div>
+                    </div>
+
+                    <!-- CTA -->
                     <div class="hero-cta">
-                        <a href="#plan-standard" class="btn btn-primary btn-large hero-main-cta">
-                            Начать сейчас — 7 дней бесплатно
+                        <a href="#pricing" class="btn btn-glow btn-large hero-main-cta">
+                            Начать бесплатно — тариф 0 &#8381;
                             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
                             </svg>
                         </a>
-                        <p class="hero-note">Без карты · отмена в 1 клик</p>
+                        <div class="hero-trust-inline">
+                            <span>&#11088;&#11088;&#11088;&#11088;&#11088; 4.9/5</span>
+                            <span class="trust-sep">&middot;</span>
+                            <span>1000+ клиентов</span>
+                            <span class="trust-sep">&middot;</span>
+                            <span>Старт — 0 &#8381; навсегда</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Dashboard visual -->
                 <div class="hero-visual">
-                    <div class="dashboard-preview">
+                    <div class="dashboard-preview dashboard-dark">
                         <div class="preview-header">
                             <div class="preview-dots">
                                 <span></span>
@@ -85,20 +122,20 @@
                             <div class="calendar-widget">
                                 <div class="calendar-header">
                                     <h4>Контент-план</h4>
-                                    <span class="calendar-month">Сентябрь 2025</span>
+                                    <span class="calendar-month">Май 2026</span>
                                 </div>
                                 <div class="calendar-grid">
                                     <div class="calendar-day">
-                                        <span class="day-number">17</span>
-                                        <div class="post-preview">23:01 - Пост о трендах</div>
+                                        <span class="day-number">12</span>
+                                        <div class="post-preview">10:00 &mdash; Кейс клиента</div>
                                     </div>
                                     <div class="calendar-day">
-                                        <span class="day-number">18</span>
-                                        <div class="post-preview">12:00 - AI генерация</div>
+                                        <span class="day-number">14</span>
+                                        <div class="post-preview">14:30 &mdash; Тренды рынка</div>
                                     </div>
                                     <div class="calendar-day">
-                                        <span class="day-number">19</span>
-                                        <div class="post-preview">15:30 - Обзор продукта</div>
+                                        <span class="day-number">16</span>
+                                        <div class="post-preview">09:00 &mdash; Обзор продукта</div>
                                     </div>
                                 </div>
                             </div>
@@ -108,9 +145,27 @@
                                     <span class="ai-status">Активен</span>
                                 </div>
                                 <div class="ai-content">
-                                    <p>"Создаю пост о новых трендах в маркетинге..."</p>
+                                    <p>"Создаю пост о кейсе клиента в вашем стиле..."</p>
                                     <div class="ai-progress">
                                         <div class="progress-bar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- New: AI score widget -->
+                            <div class="ai-score-widget">
+                                <div class="ai-score-main">
+                                    <div class="ai-score-label">Охват за неделю</div>
+                                    <div class="ai-score-value">+62%</div>
+                                    <div class="ai-score-meta">&#8593; vs прошлый месяц</div>
+                                </div>
+                                <div class="ai-stat-grid">
+                                    <div class="ai-stat-item">
+                                        <span class="ai-stat-num">9</span>
+                                        <span class="ai-stat-lbl">заявок</span>
+                                    </div>
+                                    <div class="ai-stat-item">
+                                        <span class="ai-stat-num">35мин</span>
+                                        <span class="ai-stat-lbl">в день</span>
                                     </div>
                                 </div>
                             </div>
@@ -118,35 +173,30 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="hero-steps hero-steps-wide">
-                <h3 class="hero-steps-title">Как это работает</h3>
-                <div class="hero-steps-track">
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">1</span>
-                        <span class="hero-step-text">Регистрация</span>
-                    </div>
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">2</span>
-                        <span class="hero-step-text">Заполнить профиль бизнеса</span>
-                    </div>
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">3</span>
-                        <span class="hero-step-text">Подключить соцсети</span>
-                    </div>
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">4</span>
-                        <span class="hero-step-text">Создать контент-план за 2 минуты</span>
-                    </div>
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">5</span>
-                        <span class="hero-step-text">Автопубликация через календарь</span>
-                    </div>
-                    <div class="hero-step-item">
-                        <span class="hero-step-num">6</span>
-                        <span class="hero-step-text">Анализ результатов публикаций</span>
-                    </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container">
+            <div class="stats-bar-inner">
+                <div class="stats-bar-item">
+                    <span class="stats-bar-num"><span class="stat-count-1">1000</span><span>+</span></span>
+                    <span class="stats-bar-label">довольных клиентов</span>
                 </div>
-            </div> -->
+                <div class="stats-bar-item">
+                    <span class="stats-bar-num"><span class="stat-count-2">50 000</span><span>+</span></span>
+                    <span class="stats-bar-label">постов сгенерировано</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="stats-bar-num"><span class="stat-count-3">95</span><span>%</span></span>
+                    <span class="stats-bar-label">экономия времени на контенте</span>
+                </div>
+                <div class="stats-bar-item">
+                    <span class="stats-bar-num"><span class="stat-count-4">4.9</span><span>/5</span></span>
+                    <span class="stats-bar-label">средняя оценка пользователей</span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -171,107 +221,149 @@
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <!-- <section class="problem">
+    <!-- COMPARISON — Why not competitors -->
+    <section class="comparison" id="comparison">
         <div class="container">
-            <div class="problem-content">
-                <h2 class="section-title">Знакомые проблемы?</h2>
-                <div class="problems-grid">
-                    <div class="problem-item">
-                        <div class="problem-icon">😫</div>
-                        <h3>Муки творчества</h3>
-                        <p>Каждый день нужно придумывать новые идеи для постов, а вдохновение не приходит по расписанию</p>
-                    </div>
-                    <div class="problem-item">
-                        <div class="problem-icon">⏰</div>
-                        <h3>Нехватка времени</h3>
-                        <p>На создание качественного контента уходит 3-5 часов в день, которых катастрофически не хватает</p>
-                    </div>
-                    <div class="problem-item">
-                        <div class="problem-icon">📉</div>
-                        <h3>Низкие охваты</h3>
-                        <p>Посты не заходят аудитории, охваты падают, а конверсия в продажи стремится к нулю</p>
-                    </div>
-                    <div class="problem-item">
-                        <div class="problem-icon">🤯</div>
-                        <h3>Хаос в планировании</h3>
-                        <p>Забываете публиковать в нужное время, теряете контроль над контент-планом</p>
-                    </div>
-                    <div class="problem-item">
-                        <div class="problem-icon">💸</div>
-                        <h3>Дорогие SMM-менеджеры</h3>
-                        <p>Найм специалистов обходится в $1000+ в месяц, а результат не всегда оправдывает затраты</p>
-                    </div>
-                    <div class="problem-item">
-                        <div class="problem-icon">🔄</div>
-                        <h3>Однообразный контент</h3>
-                        <p>Идеи заканчиваются, посты становятся похожими друг на друга, аудитория теряет интерес</p>
-                    </div>
-                </div>
+            <div class="comparison-header">
+                <span class="section-eyebrow">Честное сравнение</span>
+                <h2 class="section-title">Почему не Buffer или SMMPlanner?</h2>
+                <p class="section-description">
+                    Они публикуют по расписанию. Content Pulse — думает, пишет и показывает что работает.
+                </p>
+            </div>
+
+            <div class="comparison-table-wrap">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Возможность</th>
+                            <th class="highlight-col">
+                                <div class="col-badge">Наш выбор</div>
+                                Content Pulse
+                            </th>
+                            <th>Buffer</th>
+                            <th>SMMPlanner</th>
+                            <th>ChatGPT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ИИ обучается на вашем бизнесе</td>
+                            <td class="highlight-col">&#10003;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Генерирует готовые посты</td>
+                            <td class="highlight-col">&#10003;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                            <td>&#10003;</td>
+                        </tr>
+                        <tr>
+                            <td>Контент-план за 2 минуты</td>
+                            <td class="highlight-col">&#10003;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Автопостинг в соцсети</td>
+                            <td class="highlight-col">&#10003;</td>
+                            <td>&#10003;</td>
+                            <td>&#10003;</td>
+                            <td>&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Аналитика по рубрикам</td>
+                            <td class="highlight-col">&#10003;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                            <td>&#10007;</td>
+                        </tr>
+                        <tr>
+                            <td>Цена от</td>
+                            <td class="highlight-col price-highlight">от 990 &#8381;/мес</td>
+                            <td class="price-highlight-plain">от 1 500 &#8381;</td>
+                            <td class="price-highlight-plain">от 800 &#8381;</td>
+                            <td class="price-highlight-plain">от 2 000 &#8381;</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="comparison-cta">
+                <a href="#pricing" class="btn btn-primary btn-large">
+                    Начать с Content Pulse &rarr;
+                </a>
             </div>
         </div>
-    </section> -->
+    </section>
 
-    <!-- Solution Section -->
-    <section class="solution">
+    <!-- How It Works -->
+    <section class="how-it-works">
         <div class="container">
-            <div class="solution-content">
-                <div class="solution-text">
-                    <h2 class="section-title">От профиля компании до плана в пару кликов</h2>
-                    <p class="section-description">
-                        Вы описываете бизнес один раз — ИИ подстраивает темы, тон и рубрики под вас. Дальше остаётся согласовать и публиковать.
-                    </p>
-                    <div class="solution-features">
-                        <div class="feature-item">
-                            <div class="feature-icon">🤖</div>
-                            <div class="feature-text">
-                                <h4>ИИ генерирует идеи</h4>
-                                <p>Анализирует базу знаний бренда и создает релевантный контент для вашей ниши</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">📅</div>
-                            <div class="feature-text">
-                                <h4>Автоматическое планирование</h4>
-                                <p>Умный календарь сам определяет лучшее время для публикаций</p>
-                            </div>
-                        </div>
-                        <div class="feature-item">
-                            <div class="feature-icon">📱</div>
-                            <div class="feature-text">
-                                <h4>Мультиканальная публикация</h4>
-                                <p>Одновременная отправка в Instagram, Telegram и другие соцсети</p>
-                            </div>
-                        </div>
+            <div class="hiw-header">
+                <span class="hiw-eyebrow">Как это работает</span>
+                <h2 class="section-title">Три шага — и контент на месяц готов</h2>
+                <p class="section-description">Никакого хаоса и "с чего начать". Просто ответьте на несколько вопросов.</p>
+            </div>
+
+            <div class="hiw-steps">
+                <div class="hiw-step">
+                    <span class="hiw-num">01</span>
+                    <h3>Опишите свой бизнес</h3>
+                    <p>Ниша, тон голоса, аудитория, продукт. Заполняете один раз — система запоминает навсегда.</p>
+                    <div class="hiw-tags">
+                        <span>Ниша</span>
+                        <span>Тон голоса</span>
+                        <span>Аудитория</span>
                     </div>
+                    <div class="hiw-time">3 минуты</div>
                 </div>
-                <div class="solution-visual">
-                    <div class="workflow-diagram">
-                        <div class="workflow-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <h4>Анализ базы знаний</h4>
-                                <p>ИИ изучает данные компании и предыдущие посты</p>
-                            </div>
-                        </div>
-                        <div class="workflow-arrow">→</div>
-                        <div class="workflow-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <h4>Генерация контента</h4>
-                                <p>Создание уникальных постов с учетом трендов</p>
-                            </div>
-                        </div>
-                        <div class="workflow-arrow">→</div>
-                        <div class="workflow-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <h4>Автопубликация</h4>
-                                <p>Размещение в соцсетях в оптимальное время</p>
-                            </div>
-                        </div>
+
+                <div class="hiw-connector">
+                    <span class="hiw-connector-arrow">&rarr;</span>
+                </div>
+
+                <div class="hiw-step">
+                    <span class="hiw-num">02</span>
+                    <h3>ИИ строит план и пишет посты</h3>
+                    <p>Генерирует контент-план на месяц, создаёт тексты в вашем стиле. Редактируйте или одобряйте сразу.</p>
+                    <div class="hiw-tags">
+                        <span>Контент-план</span>
+                        <span>Тексты постов</span>
+                        <span>Визуалы</span>
                     </div>
+                    <div class="hiw-time">2 минуты</div>
                 </div>
+
+                <div class="hiw-connector">
+                    <span class="hiw-connector-arrow">&rarr;</span>
+                </div>
+
+                <div class="hiw-step">
+                    <span class="hiw-num">03</span>
+                    <h3>Автопубликация и аналитика</h3>
+                    <p>Включаете автопилот — посты выходят сами. Видите какие рубрики реально дают заявки.</p>
+                    <div class="hiw-tags">
+                        <span>Instagram</span>
+                        <span>Telegram</span>
+                        <span>Аналитика заявок</span>
+                    </div>
+                    <div class="hiw-time">Работает 24/7</div>
+                </div>
+            </div>
+
+            <div class="hiw-cta-row">
+                <a href="https://app.contentpulse.media/login" class="btn btn-coral btn-large">
+                    Начать с бесплатного тарифа &mdash; 0 &#8381;
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                    </svg>
+                </a>
+                <span class="hiw-cta-note">Без карты &middot; отмена в 1 клик</span>
             </div>
         </div>
     </section>
@@ -293,7 +385,7 @@
                         </svg>
                     </div>
                     <h3>ИИ Генерация</h3>
-                    <p>Создание уникального контента на основе анализа трендов и вашей ниши</p>
+                    <p>Создание уникального контента на основе базы знаний вашего бренда — не шаблоны, а живой текст в вашем стиле</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card-icon">
@@ -302,7 +394,7 @@
                         </svg>
                     </div>
                     <h3>Умный календарь</h3>
-                    <p>Визуальное планирование публикаций с drag & drop и автоматическим распределением</p>
+                    <p>Визуальное планирование публикаций с drag &amp; drop и автоматическим распределением по оптимальному времени</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card-icon">
@@ -311,7 +403,7 @@
                         </svg>
                     </div>
                     <h3>Мультиканальность</h3>
-                    <p>Одновременная публикация в Instagram, Telegram, Facebook и других соцсетях</p>
+                    <p>Одновременная публикация в Instagram, Telegram, Facebook и других соцсетях из одного окна</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card-icon">
@@ -329,7 +421,7 @@
                         </svg>
                     </div>
                     <h3>Медиа-библиотека</h3>
-                    <p>Удобное хранение и управление всеми изображениями, видео и другими файлами</p>
+                    <p>Удобное хранение и управление всеми изображениями, видео и другими файлами для постов</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-card-icon">
@@ -338,72 +430,7 @@
                         </svg>
                     </div>
                     <h3>Автопилот</h3>
-                    <p>Полная автоматизация: от генерации идей до публикации без вашего участия</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Social Proof Section -->
-    <section class="social-proof">
-        <div class="container">
-            <div class="social-proof-content">
-                <h2 class="section-title">Нам доверяют</h2>
-                <div class="testimonials">
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"За 3 недели сократила время на контент с 3-4 часов до 35 минут в день. Охваты выросли на 62%, и с рубрики «кейсы» пришли первые 9 заявок."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">М</div>
-                            <div class="author-info">
-                                <h4>Мария, эксперт по онлайн-обучению</h4>
-                                <span>Блог + консультации</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"Запустили контент по 2 проектам без расширения команды. Контент-план собирается за утро, а заявок с Instagram стало на 37% больше за месяц."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">А</div>
-                            <div class="author-info">
-                                <h4>Алексей, владелец локального бизнеса</h4>
-                                <span>Сеть студий услуг</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial">
-                        <div class="testimonial-content">
-                            <p>"В агентстве ведем 8 клиентов и больше не теряем публикации. Автопостинг и шаблоны сократили производство контента на 45%."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">Е</div>
-                            <div class="author-info">
-                                <h4>Елена, аккаунт-директор</h4>
-                                <span>SMM-агентство</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="stats-row">
-                    <div class="stat-item">
-                        <span class="stat-number">1000+</span>
-                        <span class="stat-label">довольных клиентов</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">50K+</span>
-                        <span class="stat-label">постов сгенерировано</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">95%</span>
-                        <span class="stat-label">экономия времени</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4.9/5</span>
-                        <span class="stat-label">средняя оценка</span>
-                    </div>
+                    <p>Полная автоматизация: от генерации идей до публикации без вашего участия — вы только утверждаете</p>
                 </div>
             </div>
         </div>
@@ -418,144 +445,165 @@
                     Начните бесплатно и масштабируйтесь по мере роста
                 </p>
             </div>
-            <div class="pricing-cards">
+
+            <!-- Urgency banner -->
+            <div class="pricing-urgency-banner">
+                <span class="urgency-fire">&#128293;</span>
+                <span><strong>Скидка 20% при оплате за год</strong> &mdash; только до конца этой недели</span>
+            </div>
+
+            <!-- Main 3 plans -->
+            <div class="pricing-main-grid" id="plan-standard">
                 <div class="pricing-card">
                     <div class="pricing-header-card">
                         <h3>Старт</h3>
                         <div class="pricing-price">
                             <span class="price-amount">0</span>
-                            <span class="price-period">₽ / месяц</span>
+                            <span class="price-period">&#8381; / месяц</span>
                         </div>
                         <p class="pricing-description">Для знакомства с платформой</p>
                     </div>
                     <div class="pricing-features">
-                        <div class="feature">✔ 10 постов в месяц</div>
-                        <div class="feature">✔ 50 AI-запросов месяц</div>
-                        <div class="feature">✔ 1 проект</div>
-                        <div class="feature">✔ Базовая ИИ-генерация текста</div>
-                        <div class="feature">✔ Календарь публикаций</div>
-                        <div class="feature">✔ Автопостинг</div>
-                        <div class="feature">❌ Аналитика</div>
-                        <div class="feature">❌ Командная работа</div>
+                        <div class="feature">&#10004; 10 постов в месяц</div>
+                        <div class="feature">&#10004; 50 AI-запросов</div>
+                        <div class="feature">&#10004; 1 проект</div>
+                        <div class="feature">&#10004; ИИ-генерация текста</div>
+                        <div class="feature">&#10004; Автопостинг</div>
+                        <div class="feature">&#10008; Аналитика</div>
                     </div>
                     <button class="btn btn-outline btn-full pricing-btn" data-plan="start">Начать бесплатно</button>
                 </div>
 
-                <div class="pricing-card">
-              
-                    <div class="pricing-header-card">
-                        <h3>Микро</h3>
-                        <div class="pricing-price">
-                            <span class="price-amount">990</span>
-                            <span class="price-period">₽ / месяц</span>
-                        </div>
-                        <p class="pricing-description">Для соло-блогеров</p>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="feature">✔ 50 постов в месяц</div>
-                        <div class="feature">✔ 300 AI-запросов месяц</div>
-                        <div class="feature">✔ 2 проекта</div>
-                        <div class="feature">✔ Генерация текста и изображений</div>
-                        <div class="feature">✔ Умный календарь публикаций</div>
-                        <div class="feature">✔ Автопостинг</div>
-                        <div class="feature">❌ Базовая аналитика</div>
-                    </div>
-                    <button class="btn btn-outline btn-full pricing-btn" data-plan="micro">Оформить подписку</button>
-               
-                </div>
-                
-                <div class="pricing-card pricing-card-popular" id="plan-standard">
+                <div class="pricing-card pricing-card-popular">
                     <div class="popular-badge">Популярный</div>
                     <div class="pricing-header-card">
                         <h3>Блогер</h3>
                         <div class="pricing-price">
-                            <span class="price-amount">2,490</span>
-                            <span class="price-period">₽ / месяц</span>
+                            <span class="price-amount">2&thinsp;490</span>
+                            <span class="price-period">&#8381; / месяц</span>
                         </div>
-                        <p class="pricing-description">Для растущих личных блогов.</p>
+                        <p class="pricing-description">Для растущих личных блогов</p>
                     </div>
                     <div class="pricing-features">
-                        <div class="feature">✔ 75 постов в месяц</div>
-                        <div class="feature">✔ 700 AI-запросов месяц</div>
-                        <div class="feature">✔ 3 проекта</div>
-                        <div class="feature">✔ Генерация текста и изображений</div>
-                        <div class="feature">✔ Умный календарь публикаций</div>
-                        <div class="feature">✔ Автопостинг</div>
-                        <div class="feature">✔ Аналитика</div>
+                        <div class="feature">&#10004; 75 постов в месяц</div>
+                        <div class="feature">&#10004; 700 AI-запросов</div>
+                        <div class="feature">&#10004; 3 проекта</div>
+                        <div class="feature">&#10004; Генерация текста и визуалов</div>
+                        <div class="feature">&#10004; Умный календарь</div>
+                        <div class="feature">&#10004; Автопостинг</div>
+                        <div class="feature">&#10004; Аналитика по рубрикам</div>
                     </div>
                     <button class="btn btn-primary btn-full pricing-btn" data-plan="blogger">Оформить подписку</button>
                 </div>
-                
+
                 <div class="pricing-card">
                     <div class="pricing-header-card">
                         <h3>Команда</h3>
                         <div class="pricing-price">
-                            <span class="price-amount">4,990</span>
-                            <span class="price-period">₽ / месяц</span>
+                            <span class="price-amount">4&thinsp;990</span>
+                            <span class="price-period">&#8381; / месяц</span>
                         </div>
-                        <p class="pricing-description">Для активных создателей контента и экспертов</p>
+                        <p class="pricing-description">Для активных авторов и команд</p>
                     </div>
                     <div class="pricing-features">
-                        <div class="feature">✔ 300 постов в месяц</div>
-                        <div class="feature">✔ 1500 AI-запросов месяц</div>
-                        <div class="feature">✔ 5 проектов</div>
-                        <div class="feature">✔ Генерация текста, картинок</div>
-                        <div class="feature">✔ Аналитика</div>
-                        <div class="feature">✔ Планировщик кампаний</div>
-                        <div class="feature">✔ Автопостинг</div>
-                        <div class="feature">✔ Поддержка приоритетом</div>
+                        <div class="feature">&#10004; 300 постов в месяц</div>
+                        <div class="feature">&#10004; 1500 AI-запросов</div>
+                        <div class="feature">&#10004; 5 проектов</div>
+                        <div class="feature">&#10004; Генерация текста и картинок</div>
+                        <div class="feature">&#10004; Аналитика + кампании</div>
+                        <div class="feature">&#10004; Приоритетная поддержка</div>
                     </div>
                     <button class="btn btn-outline btn-full pricing-btn" data-plan="team">Оформить подписку</button>
                 </div>
-                
+            </div>
+
+            <!-- Toggle for extra plans -->
+            <div class="pricing-toggle-wrap">
+                <button class="pricing-toggle-btn" id="pricingToggle">
+                    <span class="toggle-label">Смотреть все тарифы</span>
+                    <span class="toggle-chevron">&#9660;</span>
+                </button>
+            </div>
+
+            <!-- Extra 3 plans (hidden by default) -->
+            <div class="pricing-extra-grid" id="pricingExtraGrid">
+                <div class="pricing-card">
+                    <div class="pricing-header-card">
+                        <h3>Микро</h3>
+                        <div class="pricing-price">
+                            <span class="price-amount">990</span>
+                            <span class="price-period">&#8381; / месяц</span>
+                        </div>
+                        <p class="pricing-description">Для соло-блогеров</p>
+                    </div>
+                    <div class="pricing-features">
+                        <div class="feature">&#10004; 50 постов в месяц</div>
+                        <div class="feature">&#10004; 300 AI-запросов</div>
+                        <div class="feature">&#10004; 2 проекта</div>
+                        <div class="feature">&#10004; Генерация текста и изображений</div>
+                        <div class="feature">&#10004; Умный календарь</div>
+                        <div class="feature">&#10004; Автопостинг</div>
+                    </div>
+                    <button class="btn btn-outline btn-full pricing-btn" data-plan="micro">Оформить подписку</button>
+                </div>
+
                 <div class="pricing-card">
                     <div class="pricing-header-card">
                         <h3>Агентство</h3>
                         <div class="pricing-price">
-                            <span class="price-amount">14,990</span>
-                            <span class="price-period">₽ / месяц</span>
+                            <span class="price-amount">14&thinsp;990</span>
+                            <span class="price-period">&#8381; / месяц</span>
                         </div>
                         <p class="pricing-description">Для команд и digital-агентств</p>
                     </div>
                     <div class="pricing-features">
-                        <div class="feature">✔ 1000 постов в месяц</div>
-                        <div class="feature">✔ 300 AI-запросов месяц</div>
-                        <div class="feature">✔ до 10 проектов</div>
-                        <div class="feature">✔ Командная работа</div>
-                        <div class="feature">✔ Планировщик кампаний</div>
-                        <div class="feature">✔ Генерация текста, картинок</div>
-                        <div class="feature">✔ Расширенная аналитика</div>
-                        <div class="feature">✔ Приоритетная поддержка</div>
+                        <div class="feature">&#10004; 1000 постов в месяц</div>
+                        <div class="feature">&#10004; 3000 AI-запросов</div>
+                        <div class="feature">&#10004; до 10 проектов</div>
+                        <div class="feature">&#10004; Командная работа</div>
+                        <div class="feature">&#10004; Планировщик кампаний</div>
+                        <div class="feature">&#10004; Генерация текста и картинок</div>
+                        <div class="feature">&#10004; Расширенная аналитика</div>
+                        <div class="feature">&#10004; Приоритетная поддержка</div>
                     </div>
                     <button class="btn btn-outline btn-full pricing-btn" data-plan="agency">Оформить подписку</button>
                 </div>
-                
+
                 <div class="pricing-card">
                     <div class="pricing-header-card">
                         <h3>Корпорация / API</h3>
                         <div class="pricing-price">
-                            <span class="price-amount">от 30,000</span>
-                            <span class="price-period">₽ / месяц</span>
+                            <span class="price-amount">от 30&thinsp;000</span>
+                            <span class="price-period">&#8381; / месяц</span>
                         </div>
                         <p class="pricing-description">Для бизнеса с особыми требованиями</p>
                     </div>
                     <div class="pricing-features">
-                        <div class="feature">✔ Индивидуальные лимиты постов и генерации</div>
-                        <div class="feature">✔ Неограниченные соцсети</div>
-                        <div class="feature">✔ Собственные интеграции через API</div>
-                        <div class="feature">✔ SLA и выделенный менеджер</div>
-                        <div class="feature">✔ Расширенная аналитика</div>
+                        <div class="feature">&#10004; Индивидуальные лимиты</div>
+                        <div class="feature">&#10004; Неограниченные соцсети</div>
+                        <div class="feature">&#10004; Собственные интеграции через API</div>
+                        <div class="feature">&#10004; SLA и выделенный менеджер</div>
+                        <div class="feature">&#10004; Расширенная аналитика</div>
                     </div>
                     <button class="btn btn-outline btn-full pricing-btn" data-plan="enterprise">Запросить демо</button>
                 </div>
             </div>
+
             <div class="pricing-note">
                 <div class="pricing-note-content">
-                    <div class="pricing-note-icon">💡</div>
+                    <div class="pricing-note-icon">&#128161;</div>
                     <div class="pricing-note-text">
                         <p><strong>Нужно больше постов?</strong> Вы можете легко изменить тариф или докупить дополнительные посты в любое время через личный кабинет. Никаких ограничений!</p>
                     </div>
                 </div>
+            </div>
+
+            <!-- Guarantee -->
+            <div class="pricing-guarantee">
+                <div class="guarantee-badge">
+                    &#128737; 30 дней — гарантия возврата
+                </div>
+                <span>Не подошло? Вернём деньги без вопросов в течение 30 дней.</span>
             </div>
         </div>
     </section>
@@ -564,9 +612,9 @@
     <section class="cta" id="demo">
         <div class="container">
             <div class="cta-content">
-                <h2 class="cta-title">Попробуйте 7 дней бесплатно</h2>
+                <h2 class="cta-title">Начните бесплатно прямо сейчас</h2>
                 <p class="cta-description">
-                    Оставьте телефон — расскажем, как собрать «доску маркетолога» под ваш бизнес, или сразу выберите тариф ниже.
+                    Тариф Старт — 0 &#8381;/мес навсегда. Нужно больше постов или аналитика — переходите на платный в любой момент.
                 </p>
                 <div class="cta-buttons">
                     <a href="#plan-standard" class="btn btn-primary btn-large">
@@ -578,12 +626,12 @@
                     <div class="callback-form">
                         <form class="phone-form" id="callbackForm">
                             <div class="phone-input-group">
-                                <input 
+                                <input
                                     type="tel"
                                     inputmode="tel"
                                     maxlength="18"
                                     pattern="^\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$"
-                                    placeholder="+7 (999) 123-45-67" 
+                                    placeholder="+7 (999) 123-45-67"
                                     class="phone-input"
                                     id="phoneInput"
                                     required
@@ -598,7 +646,7 @@
                         </form>
                     </div>
                 </div>
-                <p class="cta-note">Без оплаты · 7 дней бесплатно · отмена в любое время</p>
+                <p class="cta-note">Без карты &middot; тариф Старт — 0 &#8381; навсегда &middot; апгрейд когда нужно</p>
             </div>
         </div>
     </section>
@@ -618,32 +666,6 @@
                         Держите свой контент всегда на пульсе с помощью ИИ и освободите время для развития бизнеса
                     </p>
                 </div>
-                <!-- Footer links - временно закомментированы для настройки -->
-                <!--
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Продукт</h4>
-                        <a href="#features">Возможности</a>
-                        <a href="#pricing">Тарифы</a>
-                        <a href="#plan-standard">Демо</a>
-                        <a href="/api">API</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Компания</h4>
-                        <a href="/about">О нас</a>
-                        <a href="/blog">Блог</a>
-                        <a href="/careers">Карьера</a>
-                        <a href="/contact">Контакты</a>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Поддержка</h4>
-                        <a href="/help">Помощь</a>
-                        <a href="/docs">Документация</a>
-                        <a href="/status">Статус</a>
-                        <a href="/contact">Связаться</a>
-                    </div>
-                </div>
-                -->
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Content Pulse. Все права защищены.</p>
@@ -655,50 +677,18 @@
         </div>
     </footer>
 
-    <!-- Pricing Modal -->
-    <div class="modal" id="pricingModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Подключение тарифа</h3>
-                <button class="modal-close" id="modalClose">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p class="modal-description">Заполните данные и мы свяжемся с вами для подключения выбранного тарифа</p>
-                <form class="pricing-form" id="pricingForm">
-                    <div class="form-group">
-                        <label for="userName">Имя *</label>
-                        <input type="text" id="userName" name="name" required placeholder="Ваше имя">
-                    </div>
-                    <div class="form-group">
-                        <label for="userEmail">Email *</label>
-                        <input type="email" id="userEmail" name="email" required placeholder="your@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="userPhone">Телефон *</label>
-                        <input type="tel" id="userPhone" name="phone" required placeholder="+7 (999) 123-45-67" maxlength="18" pattern="^\+7 \([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$">
-                    </div>
-                    <div class="form-group">
-                        <label for="userCompany">Компания</label>
-                        <input type="text" id="userCompany" name="company" placeholder="Название компании">
-                    </div>
-                    <div class="form-group">
-                        <label for="userMessage">Комментарий</label>
-                        <textarea id="userMessage" name="message" placeholder="Расскажите о ваших потребностях"></textarea>
-                    </div>
-                    <input type="hidden" id="selectedPlan" name="plan" value="">
-                    <!-- Consent checkboxes -->
-                    <div class="form-group" id="consents">
-                        <label>
-                            <input type="checkbox" id="privacyPolicy" name="privacyPolicy" required checked>
-                            <span>Соглашаюсь с <a href="privacy.html" target="_blank">Политикой конфиденциальности</a></span>
-                        </label>
-                        <label>
-                            <input type="checkbox" id="termsAgreement" name="termsAgreement" required checked>
-                            <span>Принимаю условия <a href="terms.html" target="_blank">Пользовательского соглашения</a></span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full" id="submitBtn">Отправить заявку</button>
-                </form>
+    <!-- Sticky Bottom CTA Bar -->
+    <div class="sticky-bar" id="stickyBar">
+        <div class="container">
+            <div class="sticky-bar-content">
+                <div class="sticky-bar-left">
+                    <span class="sticky-bar-title">Начните с бесплатного тарифа — 0 &#8381;/мес навсегда</span>
+                    <span class="sticky-bar-sub">Без карты &middot; платный когда нужно больше</span>
+                </div>
+                <div class="sticky-bar-actions">
+                    <span class="sticky-bar-rating">&#11088; 4.9/5 &middot; 1000+ клиентов</span>
+                    <a href="https://app.contentpulse.media/login" class="btn btn-glow">Начать бесплатно &rarr;</a>
+                </div>
             </div>
         </div>
     </div>
@@ -707,5 +697,6 @@
     <script src="js/main.js"></script>
     <script src="js/pricing-modal.js"></script>
     <script src="js/mobile-menu.js"></script>
+    <script src="js/wow.js"></script>
 </body>
 </html>
