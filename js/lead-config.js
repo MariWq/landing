@@ -7,3 +7,5 @@ window.CONTENTPULSE_LEAD = {
   web3formsProxyUrl: "https://contentpulse-web3forms-proxy.contentpulse.workers.dev",
   web3formsAccessKey: "475dfd67-c3f5-4944-b1e1-4f14424fc0d8",
 };
+
+window.CONTENTPULSE_METRIKA_ID = 109303033;

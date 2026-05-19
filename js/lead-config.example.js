@@ -7,3 +7,5 @@ window.CONTENTPULSE_LEAD = {
   web3formsProxyUrl: "https://YOUR-WORKER.workers.dev",
   // web3formsAccessKey: "YOUR_WEB3FORMS_ACCESS_KEY",
 };
+
+window.CONTENTPULSE_METRIKA_ID = 109303033;
